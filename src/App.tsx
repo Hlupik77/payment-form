@@ -5,7 +5,7 @@ import { useForm } from "./features/paymentForm/paymentForm.hooks.ts";
 function App() {
   const { loading, result, processPayment, resetResult } = useForm();
   return (
-    <div className="border rounded-lg shadow-md bg-white w-[457px] h-[464px] p-[25px_30px] opacity-100 mx-auto">
+    <div className="border rounded-lg shadow-md bg-white w-[457px] h-[464px] p-[20px_20px] opacity-100 mx-auto">
       {!result && (
         <PaymentForm onSubmit={processPayment} loading={loading} />
       )}
