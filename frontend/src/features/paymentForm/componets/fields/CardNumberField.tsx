@@ -32,10 +32,9 @@ export const CardNumberField = ({ register, disabled, error }: Props) => {
           maxLength={23}
           disabled={disabled}
           aria-invalid={!!error}
-          className="h-10 border border-grey-200 rounded-[10px] p-3 text-base tracking-widest w-full"
-          style={
-            error ? { border: '1px solid var(--Error, #EF4F39)' } : undefined
-          }
+          className={`h-10 border rounded-[10px] p-3 text-base tracking-widest w-full ${
+            error ? 'border-error' : 'border-grey-200'
+          }`}
         />
       </div>
       <label

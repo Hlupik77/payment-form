@@ -1,5 +1,5 @@
 interface PaymentResultProps {
-  status: string;
+  status: 'success' | 'error' | string;
   onClose: () => void;
 }
 

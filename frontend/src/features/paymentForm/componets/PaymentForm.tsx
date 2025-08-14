@@ -57,7 +57,7 @@ export const PaymentForm = ({ onSubmit, loading }: PaymentFormProps) => {
 
       <div className="flex justify-end">
         <Button loading={loading} disabled={!isValid}>
-          {loading ? 'Обработка...' : 'Оплатить'}
+          Оплатить
         </Button>
       </div>
     </form>

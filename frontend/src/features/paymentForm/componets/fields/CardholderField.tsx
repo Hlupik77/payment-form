@@ -7,38 +7,37 @@ interface Props {
   error?: string;
 }
 
-export const CvcField = ({ register, disabled, error }: Props) => {
+export const CardholderField = ({ register, disabled, error }: Props) => {
   return (
-    <div>
+    <div className="col-span-1 md:col-span-2">
       <div className="grid grid-cols-[auto,1fr] items-center gap-x-3 gap-y-1">
         <label
-          htmlFor="cvc"
+          htmlFor="cardholder"
           className="text-sm font-medium text-grey-800 whitespace-nowrap"
         >
-          Код
+          Владелец карты
         </label>
         <input
-          id="cvc"
-          {...register('cvc', {
+          id="cardholder"
+          {...register('cardholder', {
             onChange: (e) => {
-              e.target.value = e.target.value.replace(/\D/g, '').slice(0, 3);
+              e.target.value = e.target.value
+                .replace(/[^A-Za-zА-Яа-яЁё\s]/g, '')
+                .replace(/\s+/g, ' ')
+                .trimStart();
             },
           })}
-          inputMode="numeric"
-          autoComplete="cc-csc"
-          type="password"
-          placeholder="***"
-          maxLength={3}
+          autoComplete="cc-name"
+          placeholder="IVAN IVANOV"
           disabled={disabled}
           aria-invalid={!!error}
-          className="h-10 border border-grey-200 rounded-[10px] p-3 text-base tracking-widest w-full"
-          style={
-            error ? { border: '1px solid var(--Error, #EF4F39)' } : undefined
-          }
+          className={`h-10 border rounded-[10px] p-3 text-base tracking-widest w-full ${
+              error ? 'border-error' : 'border-grey-200'
+          }`}
         />
       </div>
       <label
-        htmlFor="cvc"
+        htmlFor="cardholder"
         className="text-[14px] leading-[18px] font-normal text-error whitespace-nowrap"
       >
         {error ?? ''}
