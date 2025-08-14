@@ -1,5 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+@import 'tailwindcss';
 
 @theme {
   --color-primary: #304ac1;
@@ -22,7 +22,7 @@
   --color-grey-800: #434d56;
   --color-grey-900: #232c34;
   --color-grey-1000: #1a2128;
-  --font: "Inter", sans-serif;
+  --font: 'Inter', sans-serif;
   --text-title: 28px;
   --text-button: 14px;
 }

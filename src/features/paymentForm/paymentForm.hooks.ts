@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import {mockPaymentRequest} from "./paymentForm.api.ts";
-import type {IFormData} from "./paymentForm.types.ts";
+import { mockPaymentRequest } from './paymentForm.api.ts';
+import type { IFormData } from './paymentForm.types.ts';
 
 export const useForm = () => {
   const [loading, setLoading] = useState(false);
@@ -13,9 +13,9 @@ export const useForm = () => {
 
     try {
       await mockPaymentRequest(data);
-      setResult("success");
+      setResult('success');
     } catch {
-      setResult("error");
+      setResult('error');
     } finally {
       setLoading(false);
     }
@@ -27,6 +27,6 @@ export const useForm = () => {
     loading,
     result,
     processPayment,
-    resetResult
+    resetResult,
   };
 };

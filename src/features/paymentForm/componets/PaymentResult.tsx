@@ -8,7 +8,7 @@ export const PaymentResult = ({ status, onClose }: PaymentResultProps) => {
 
   return (
     <div className="flex flex-col items-center justify-center h-full">
-      {status === "success" ? (
+      {status === 'success' ? (
         <>
           <span className="text-success text-3xl">✔</span>
           <p className="mt-2 text-lg">Оплата прошла успешно</p>
