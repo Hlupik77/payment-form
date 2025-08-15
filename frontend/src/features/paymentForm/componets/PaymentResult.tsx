@@ -1,30 +1,22 @@
+import {PaymentResultMessage} from "./PaymentResultMessage.tsx";
+
+
 interface PaymentResultProps {
-  status: 'success' | 'error' | string;
-  onClose: () => void;
+    status: 'success' | 'error' | string;
 }
 
-export const PaymentResult = ({ status, onClose }: PaymentResultProps) => {
-  if (!status) return null;
+export const PaymentResult = ({ status }: PaymentResultProps) => {
+    if (!status) return null;
 
-  return (
-    <div className="flex flex-col items-center justify-center h-full">
-      {status === 'success' ? (
-        <>
-          <span className="text-success text-3xl">✔</span>
-          <p className="mt-2 text-lg">Оплата прошла успешно</p>
-        </>
-      ) : (
-        <>
-          <span className="text-error text-3xl">✖</span>
-          <p className="mt-2 text-lg">Произошла ошибка</p>
-        </>
-      )}
-      <button
-        className="mt-4 px-4 py-2 bg-grey-200 rounded hover:bg-grey-300"
-        onClick={onClose}
-      >
-        Закрыть
-      </button>
-    </div>
-  );
+    const isSuccess = status === 'success';
+
+    return (
+        <div className="flex flex-col items-center justify-center h-full">
+            <PaymentResultMessage
+                imageSrc={isSuccess ? '/icons/success_pay.svg' : '/icons/error_pay.svg'}
+                alt={isSuccess ? 'Оплата успешна' : 'Произошла ошибка'}
+                title={isSuccess ? 'Оплата прошла успешно' : 'Произошла ошибка'}
+            />
+        </div>
+    );
 };
