@@ -1,6 +1,5 @@
 import type { IFormData } from './paymentForm.types.ts';
-
-const BASE_URL = 'http://localhost:2050';
+import { config } from '../../common/config';
 
 type JsonRpcResponse<T> = {
   jsonrpc: '2.0';
@@ -25,7 +24,7 @@ export const createPaymentSession = async (
     },
   };
 
-  const res = await fetch(`${BASE_URL}/api`, {
+  const res = await fetch(`${config.apiBaseUrl}/api`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
@@ -40,7 +39,7 @@ export const createPaymentSession = async (
 export const checkPaymentStatus = async (
   pid: string
 ): Promise<{ status: 'process' | 'ok' | 'fail'; pid: string }> => {
-  const res = await fetch(`${BASE_URL}/pay/check/${pid}`, { method: 'GET' });
+  const res = await fetch(`${config.apiBaseUrl}/pay/check/${pid}`, { method: 'GET' });
   if (!res.ok) throw new Error('Network error');
   const json = (await res.json()) as { status?: string; pid?: string };
   if (!json.status || !json.pid) throw new Error('Invalid response');

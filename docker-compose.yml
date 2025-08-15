@@ -1,0 +1,29 @@
+services:
+  backend:
+    container_name: payment-form-backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=production
+      - PORT=2050
+    ports:
+      - "2050:2050"
+    restart: unless-stopped
+
+  frontend:
+    container_name: payment-form-frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    env_file:
+      - ./frontend/.env
+    restart: unless-stopped
+
+networks:
+  default:
+    driver: bridge
