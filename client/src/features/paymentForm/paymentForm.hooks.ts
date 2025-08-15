@@ -27,8 +27,8 @@ export const useForm = () => {
                         finalStatus = status;
                         break;
                     }
-                } catch {
-                    // Игнорируем разовые сетевые ошибки и продолжаем опрос
+                } catch (e) {
+                    console.error(e);
                 }
                 attempt += 1;
             }

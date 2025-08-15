@@ -1,8 +1,8 @@
 services:
-  backend:
-    container_name: payment-form-backend
+  server:
+    container_name: payment-form-server
     build:
-      context: ./backend
+      context: ./server
       dockerfile: Dockerfile
     environment:
       - NODE_ENV=production
@@ -11,17 +11,17 @@ services:
       - "2050:2050"
     restart: unless-stopped
 
-  frontend:
-    container_name: payment-form-frontend
+  client:
+    container_name: payment-form-client
     build:
-      context: ./frontend
+      context: ./client
       dockerfile: Dockerfile
     ports:
       - "8080:80"
     depends_on:
-      - backend
+      - server
     env_file:
-      - ./frontend/.env
+      - ./client/.env
     restart: unless-stopped
 
 networks:
