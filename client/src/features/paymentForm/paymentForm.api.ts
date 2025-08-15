@@ -1,5 +1,5 @@
 import type { IFormData } from './paymentForm.types.ts';
-import { config } from '../../common/config';
+import { config } from '../../shared/config.ts';
 
 type JsonRpcResponse<T> = {
   jsonrpc: '2.0';

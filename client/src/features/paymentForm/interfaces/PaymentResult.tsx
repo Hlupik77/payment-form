@@ -1,4 +1,6 @@
-import {PaymentResultMessage} from "./PaymentResultMessage.tsx";
+import {PaymentResultMessage} from "../componets/resultMessage/PaymentResultMessage.tsx";
+import successIcon from "../icons/success_pay.svg";
+import errorIcon from "../icons/error_pay.svg";
 
 
 interface PaymentResultProps {
@@ -13,7 +15,7 @@ export const PaymentResult = ({ status }: PaymentResultProps) => {
     return (
         <div className="flex flex-col items-center justify-center h-full">
             <PaymentResultMessage
-                imageSrc={isSuccess ? '/icons/success_pay.svg' : '/icons/error_pay.svg'}
+                imageSrc={isSuccess ? successIcon : errorIcon}
                 alt={isSuccess ? 'Оплата успешна' : 'Произошла ошибка'}
                 title={isSuccess ? 'Оплата прошла успешно' : 'Произошла ошибка'}
             />

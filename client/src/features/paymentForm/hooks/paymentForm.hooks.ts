@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { createPaymentSession, checkPaymentStatus } from './paymentForm.api.ts';
-import type { IFormData } from './paymentForm.types.ts';
+import {checkPaymentStatus, createPaymentSession} from "../paymentForm.api.ts";
+import type {IFormData} from "../paymentForm.types.ts";
 
 const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 

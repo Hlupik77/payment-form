@@ -1,6 +1,6 @@
-import { PaymentForm } from './features/paymentForm/componets/PaymentForm.tsx';
-import { PaymentResult } from './features/paymentForm/componets/PaymentResult.tsx';
-import { useForm } from './features/paymentForm/paymentForm.hooks.ts';
+import {PaymentForm} from "./features/paymentForm/interfaces/PaymentForm.tsx";
+import {PaymentResult} from "./features/paymentForm/interfaces/PaymentResult.tsx";
+import {useForm} from "./features/paymentForm/hooks/paymentForm.hooks.ts";
 
 function App() {
   const { loading, result, processPayment } = useForm();

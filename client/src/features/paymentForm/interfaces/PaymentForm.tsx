@@ -1,12 +1,10 @@
 import { useForm } from 'react-hook-form';
-import { Button } from '../../../common/components/Button.tsx';
 import type { IFormData } from '../paymentForm.types.ts';
-import { CardNumberField } from './fields/CardNumberField.tsx';
-import { ExpiryField } from './fields/ExpiryField.tsx';
-import { CvcField } from './fields/CvcField.tsx';
-import { CardholderField } from './fields/CardholderField.tsx';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { formSchema } from '../paymentForm.schema.ts';
+import { formatCardNumber, formatExpiry, formatCvc, formatCardholder } from '../utils/formatters.ts';
+import {PaymentField} from "../componets/inputField/PaymentField.tsx";
+import {Button} from "../componets/button/Button.tsx";
 
 interface PaymentFormProps {
     onSubmit: (data: IFormData) => void;
@@ -33,25 +31,60 @@ export const PaymentForm = ({ onSubmit, loading }: PaymentFormProps) => {
             </h1>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 flex-1">
-                <CardNumberField
+                <PaymentField
+                    name="cardNumber"
+                    label="Номер карты"
                     register={register}
                     disabled={loading}
                     error={errors.cardNumber?.message as string | undefined}
+                    placeholder="0000 0000 0000 0000"
+                    autoComplete="cc-number"
+                    inputMode="numeric"
+                    maxLength={23}
+                    wrapperClassName="col-span-1 h-[84px] md:col-span-2"
+                    format={formatCardNumber}
+                    id="cardNumber"
                 />
-                <ExpiryField
+                <PaymentField
+                    name="expiry"
+                    label="Месяц/Год"
                     register={register}
                     disabled={loading}
                     error={errors.expiry?.message as string | undefined}
+                    placeholder="MM/YY"
+                    autoComplete="cc-exp"
+                    inputMode="numeric"
+                    maxLength={5}
+                    wrapperClassName="h-[84px] w-[170px] mr-auto"
+                    format={formatExpiry}
+                    id="expiry"
                 />
-                <CvcField
+                <PaymentField
+                    name="cvc"
+                    label="Код"
                     register={register}
                     disabled={loading}
                     error={errors.cvc?.message as string | undefined}
+                    placeholder="***"
+                    autoComplete="cc-csc"
+                    inputMode="numeric"
+                    type="password"
+                    maxLength={3}
+                    wrapperClassName="h-[84px] w-[170px] ml-auto"
+                    format={formatCvc}
+                    id="cvc"
                 />
-                <CardholderField
+                <PaymentField
+                    name="cardholder"
+                    label="Владелец карты"
                     register={register}
                     disabled={loading}
                     error={errors.cardholder?.message as string | undefined}
+                    placeholder="IVAN IVANOV"
+                    autoComplete="cc-name"
+                    wrapperClassName="col-span-1 h-[84px] md:col-span-2"
+                    format={formatCardholder}
+                    id="cardholder"
                 />
             </div>
 
